@@ -55,7 +55,8 @@ test('Pre-Code Test 1: Valid Query Check returns contextual answer and forwards 
   try {
     const res = await fetch(`${srv.baseUrl}/api/query`, {
       method: 'POST',
-      headers: {
+      header
+      s: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${TEST_BUKI_TOKEN}`,
       },
