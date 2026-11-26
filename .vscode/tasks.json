@@ -1,0 +1,49 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Commit task config cleanup",
+			"type": "shell",
+			"command": "git.exe",
+			"args": [
+				"-C",
+				"C:\\Users\\ELCOT\\Desktop\\buki",
+				"commit",
+				"-m",
+				"Remove generated task config",
+				"-m",
+				"Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Push commits to origin",
+			"type": "shell",
+			"command": "git.exe",
+			"args": [
+				"-C",
+				"C:\\Users\\ELCOT\\Desktop\\buki",
+				"push",
+				"origin",
+				"main"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify pushed repository state",
+			"type": "shell",
+			"command": "git.exe",
+			"args": [
+				"-C",
+				"C:\\Users\\ELCOT\\Desktop\\buki",
+				"status",
+				"--short",
+				"--branch"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
