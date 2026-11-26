@@ -326,7 +326,7 @@ export default function App() {
   const activePipelinesCount = pipelines.filter((p) => p.status === 'Running').length;
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-zinc-950 text-zinc-100">
+    <div className="flex h-screen w-screen overflow-hidden bg-dark-surface text-dark-on-surface">
       <Sidebar
         activeView={activeView}
         onSelectView={setActiveView}
