@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import {
+  AlertTriangle,
   Bot,
   Database,
-  Eye,
-  EyeOff,
   FileText,
   Gauge,
   RefreshCw,
@@ -46,89 +45,105 @@ function StatusBadge({ status }) {
   );
 }
 
+const SYNC_OPTIONS = [
+  { key: 'realtimeSync', label: 'Real-time Sync', desc: 'Stream updates immediately on webhook or query events' },
+  { key: 'hourlyBatchReconciliation', label: 'Hourly Batch Reconciliation', desc: 'Verify missed records and checksums every 60 minutes' },
+  { key: 'dailyLedgerDigest', label: 'Daily Ledger Digest', desc: 'Compile daily audit summary for Sage Context Store' },
+];
+
 function ConfigModal({ connector, onClose, onSave }) {
-  const [endpointUrl, setEndpointUrl] = useState(connector.endpointUrl);
-  const [bearerToken, setBearerToken] = useState(connector.bearerToken);
-  const [showToken, setShowToken] = useState(false);
+  const initialSync = {
+    realtimeSync: connector.syncFrequencies?.realtimeSync ?? true,
+    hourlyBatchReconciliation: connector.syncFrequencies?.hourlyBatchReconciliation ?? false,
+    dailyLedgerDigest: connector.syncFrequencies?.dailyLedgerDigest ?? true,
+  };
+
+  const [syncFrequencies, setSyncFrequencies] = useState(initialSync);
+
+  const isDirty =
+    syncFrequencies.realtimeSync !== initialSync.realtimeSync ||
+    syncFrequencies.hourlyBatchReconciliation !== initialSync.hourlyBatchReconciliation ||
+    syncFrequencies.dailyLedgerDigest !== initialSync.dailyLedgerDigest;
+
+  function handleToggleFrequency(key) {
+    setSyncFrequencies((prev) => ({ ...prev, [key]: !prev[key] }));
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSave(connector.id, {
-      endpointUrl: endpointUrl.trim(),
-      bearerToken: bearerToken.trim(),
-    });
+    onSave(connector.id, { syncFrequencies });
   }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-      <div className="w-full max-w-lg rounded-xl border border-zinc-800 bg-zinc-950 shadow-2xl">
-        <div className="flex items-center justify-between border-b border-zinc-800 px-5 py-4">
+      <div className="w-full max-w-lg rounded-xl border border-dark-outline-variant bg-dark-surface-container-low shadow-2xl">
+        <div className="flex items-center justify-between border-b border-dark-outline-variant px-5 py-4">
           <div>
-            <h3 className="text-sm font-semibold text-zinc-100">
+            <h3 className="font-headline text-sm font-semibold text-dark-on-surface">
               Configure {connector.name}
             </h3>
-            <p className="text-xs text-zinc-400">{connector.category}</p>
+            <p className="text-xs text-dark-outline">{connector.category}</p>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1.5 text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200"
+            className="rounded-lg p-1.5 text-dark-outline hover:bg-dark-surface-container hover:text-dark-on-surface"
           >
             <X size={16} />
           </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 p-5">
-          <div>
-            <label className="mb-1.5 block text-xs font-medium text-zinc-300">
-              API Endpoint URL
-            </label>
-            <input
-              type="text"
-              value={endpointUrl}
-              onChange={(e) => setEndpointUrl(e.target.value)}
-              className="w-full rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 font-mono text-xs text-zinc-100 outline-none focus:border-emerald-500"
-              required
-            />
+          <div className="space-y-2 rounded-lg border border-dark-outline-variant bg-dark-surface-container p-3">
+            <div className="text-xs font-medium text-dark-on-surface">
+              Automated Sync Frequency
+            </div>
+            {SYNC_OPTIONS.map((opt) => {
+              const checked = syncFrequencies[opt.key];
+              return (
+                <label
+                  key={opt.key}
+                  className="flex cursor-pointer items-center justify-between gap-3 rounded-md px-1.5 py-1 hover:bg-dark-surface-container-high"
+                >
+                  <div>
+                    <div className="text-xs font-medium text-dark-on-surface">{opt.label}</div>
+                    <div className="text-[11px] text-dark-outline">{opt.desc}</div>
+                  </div>
+                  <input
+                    type="checkbox"
+                    checked={checked}
+                    onChange={() => handleToggleFrequency(opt.key)}
+                    className="h-4 w-4 rounded border-dark-outline-variant bg-dark-surface-container-lowest text-dark-primary focus:ring-0"
+                  />
+                </label>
+              );
+            })}
           </div>
 
-          <div>
-            <label className="mb-1.5 block text-xs font-medium text-zinc-300">
-              Bearer Token / Secret Key
-            </label>
-            <div className="relative">
-              <input
-                type={showToken ? 'text' : 'password'}
-                value={bearerToken}
-                onChange={(e) => setBearerToken(e.target.value)}
-                className="w-full rounded-lg border border-zinc-800 bg-zinc-900 py-2 pl-3 pr-10 font-mono text-xs text-zinc-100 outline-none focus:border-emerald-500"
-                required
-              />
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+            <div className="min-h-[20px]">
+              {isDirty && (
+                <span className="inline-flex items-center gap-1.5 rounded-md border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-300">
+                  <AlertTriangle size={13} />
+                  You have unsaved changes
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-2.5">
               <button
                 type="button"
-                onClick={() => setShowToken((prev) => !prev)}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
-                title={showToken ? 'Hide token' : 'Show token'}
+                onClick={onClose}
+                className="rounded-lg border border-dark-outline-variant bg-dark-surface-container px-3.5 py-2 text-xs font-medium text-dark-on-surface-variant hover:bg-dark-surface-container-high"
               >
-                {showToken ? <EyeOff size={15} /> : <Eye size={15} />}
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="rounded-lg bg-dark-primary px-3.5 py-2 text-xs font-semibold text-dark-on-primary hover:opacity-90"
+              >
+                Save Configuration
               </button>
             </div>
-          </div>
-
-          <div className="flex items-center justify-end gap-2.5 pt-2">
-            <button
-              type="button"
-              onClick={onClose}
-              className="rounded-lg border border-zinc-800 bg-zinc-900 px-3.5 py-2 text-xs font-medium text-zinc-300 hover:bg-zinc-800"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="rounded-lg bg-emerald-500 px-3.5 py-2 text-xs font-semibold text-zinc-950 hover:bg-emerald-400"
-            >
-              Save Configuration
-            </button>
           </div>
         </form>
       </div>

@@ -148,9 +148,13 @@ export default function App() {
     }, 950);
   }
 
-  function handleSaveConfig(id, { endpointUrl, bearerToken }) {
+  function handleSaveConfig(id, { syncFrequencies }) {
     setConnectors((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, endpointUrl, bearerToken } : c))
+      prev.map((c) =>
+        c.id === id
+          ? { ...c, syncFrequencies }
+          : c
+      )
     );
     appendLog({
       method: 'PUT',
@@ -161,7 +165,7 @@ export default function App() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${tokens[0]?.token?.slice(0, 12) || 'buki-dev'}••••`,
       },
-      payload: { endpointUrl, bearerToken: '••••••••' },
+      payload: { syncFrequencies },
       response: { ok: true, updated: id },
     });
   }
