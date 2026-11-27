@@ -491,7 +491,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
              SECTION 4: SETTINGS PANEL
              ========================================================= -->
         <section id="section-settings" class="hidden flex-col gap-gutter-xl">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-xl items-start">
+          <div class="grid grid-cols-1 gap-gutter-xl items-start">
 
             <!-- Automated Sync Frequency -->
             <div class="bg-light-surface-container-lowest border border-light-outline-variant rounded p-gutter-xl flex flex-col gap-gutter-lg">
@@ -536,47 +536,6 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
               </div>
             </div>
 
-            <!-- Sage API Credentials & Webhook URL -->
-            <form id="settings-form" class="bg-light-surface-container-lowest border border-light-outline-variant rounded p-gutter-xl flex flex-col gap-gutter-lg">
-              <div class="flex flex-col gap-gutter-xs border-b border-light-outline-variant pb-gutter-md">
-                <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Sage API Credentials &amp; Webhooks</h2>
-                <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Authenticate with Sage Intacct Web Services and configure inbound event delivery.</p>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter-lg">
-                <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-xs">
-                  <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Sage Company ID</span>
-                  <input type="text" value="ACME-INTACCT-US" class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
-                </label>
-
-                <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-xs">
-                  <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Web Services Sender ID</span>
-                  <input type="text" value="buki_erp_prod_01" class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
-                </label>
-              </div>
-
-              <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-xs">
-                <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">API Client Secret</span>
-                <div class="relative">
-                  <input id="api-secret-input" type="password" value="sk_live_sage_98a7f6d4c2b10e4a" class="w-full pl-gutter-md pr-10 py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
-                  <button id="toggle-secret-btn" type="button" aria-label="Reveal API secret" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-light-outline hover:text-light-on-surface p-1">
-                    <span id="secret-eye-icon" class="material-symbols-outlined text-[18px]">visibility</span>
-                  </button>
-                </div>
-              </label>
-
-              <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-xs">
-                <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Webhook URL</span>
-                <input type="url" value="https://api.buki.finance/v2/webhooks/sage-intacct" aria-describedby="webhook-url-hint" class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
-                <span id="webhook-url-hint" class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Signed with HMAC-SHA256 for real-time Sage journal confirmations.</span>
-              </label>
-
-              <div class="flex items-center justify-end gap-gutter-sm pt-gutter-sm border-t border-light-outline-variant">
-                <button type="submit" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" class="inline-flex items-center justify-center gap-gutter-sm px-gutter-lg py-gutter-sm rounded-sm bg-light-primary text-light-on-primary font-body text-label-lg hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-primary transition-colors duration-state-change">
-                  <span data-design-text-token="label-lg">Save Configuration</span>
-                </button>
-              </div>
-            </form>
           </div>
         </section>
 
@@ -809,7 +768,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
         },
         settings: {
           title: 'Connector Settings',
-          subtitle: 'Configure automated sync schedules, Sage API credentials, and webhook endpoints.'
+          subtitle: 'Configure automated sync schedules.'
         }
       };
 
@@ -1192,7 +1151,7 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
 
       logsFilter.addEventListener('change', renderLogs);
 
-      // --- Settings Toggles & Form ---
+      // --- Settings Toggles ---
       document.querySelectorAll('.sync-toggle').forEach((btn) => {
         btn.addEventListener('click', () => {
           const checked = btn.getAttribute('aria-checked') === 'true';
@@ -1204,20 +1163,6 @@ if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
           thumb.classList.toggle('translate-x-5', next);
           thumb.classList.toggle('translate-x-0', !next);
         });
-      });
-
-      const apiSecretInput = document.getElementById('api-secret-input');
-      const toggleSecretBtn = document.getElementById('toggle-secret-btn');
-      const secretEyeIcon = document.getElementById('secret-eye-icon');
-      toggleSecretBtn.addEventListener('click', () => {
-        const isPassword = apiSecretInput.type === 'password';
-        apiSecretInput.type = isPassword ? 'text' : 'password';
-        secretEyeIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
-      });
-
-      document.getElementById('settings-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        showToast('Sage API credentials and webhook configuration saved.', 'success');
       });
 
       // Initial render
