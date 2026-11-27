@@ -1,0 +1,1230 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buki Sage Connector — Integration Dashboard</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'success': '#047857',
+        'on-success': '#FFFFFF',
+        'success-container': '#D1FAE5',
+        'on-success-container': '#065F46',
+        'warning': '#B45309',
+        'on-warning': '#FFFFFF',
+        'warning-container': '#FEF3C7',
+        'on-warning-container': '#92400E',
+        'light-primary': '#4F46E5',
+        'light-on-primary': '#FFFFFF',
+        'light-primary-container': '#E0E7FF',
+        'light-on-primary-container': '#312E81',
+        'light-secondary': '#475569',
+        'light-on-secondary': '#FFFFFF',
+        'light-secondary-container': '#E2E8F0',
+        'light-on-secondary-container': '#1E293B',
+        'light-tertiary': '#0F172A',
+        'light-on-tertiary': '#FFFFFF',
+        'light-tertiary-container': '#F1F5F9',
+        'light-on-tertiary-container': '#0F172A',
+        'light-error': '#BE123C',
+        'light-on-error': '#FFFFFF',
+        'light-error-container': '#FFE4E6',
+        'light-on-error-container': '#9F1239',
+        'light-background': '#F8FAFC',
+        'light-on-background': '#0F172A',
+        'light-surface': '#F8FAFC',
+        'light-surface-dim': '#E2E8F0',
+        'light-surface-bright': '#FFFFFF',
+        'light-surface-container-lowest': '#FFFFFF',
+        'light-surface-container-low': '#F8FAFC',
+        'light-surface-container': '#F1F5F9',
+        'light-surface-container-high': '#E2E8F0',
+        'light-surface-container-highest': '#CBD5E1',
+        'light-on-surface': '#0F172A',
+        'light-surface-variant': '#E2E8F0',
+        'light-on-surface-variant': '#475569',
+        'light-outline': '#64748B',
+        'light-outline-variant': '#E2E8F0',
+        'light-inverse-surface': '#0F172A',
+        'light-inverse-on-surface': '#F8FAFC',
+        'light-inverse-primary': '#A5B4FC',
+        'light-shadow': '#0F172A',
+        'light-scrim': '#0F172A',
+        'dark-primary': '#A5B4FC',
+        'dark-on-primary': '#1E1B4B',
+        'dark-primary-container': '#3730A3',
+        'dark-on-primary-container': '#E0E7FF',
+        'dark-secondary': '#94A3B8',
+        'dark-on-secondary': '#0F172A',
+        'dark-secondary-container': '#334155',
+        'dark-on-secondary-container': '#F1F5F9',
+        'dark-tertiary': '#E2E8F0',
+        'dark-on-tertiary': '#0F172A',
+        'dark-tertiary-container': '#1E293B',
+        'dark-on-tertiary-container': '#F8FAFC',
+        'dark-error': '#FDA4AF',
+        'dark-on-error': '#4C0519',
+        'dark-error-container': '#881337',
+        'dark-on-error-container': '#FFE4E6',
+        'dark-background': '#0F172A',
+        'dark-on-background': '#F8FAFC',
+        'dark-surface': '#0F172A',
+        'dark-surface-dim': '#020617',
+        'dark-surface-bright': '#1E293B',
+        'dark-surface-container-lowest': '#020617',
+        'dark-surface-container-low': '#0F172A',
+        'dark-surface-container': '#1E293B',
+        'dark-surface-container-high': '#334155',
+        'dark-surface-container-highest': '#475569',
+        'dark-on-surface': '#F8FAFC',
+        'dark-surface-variant': '#334155',
+        'dark-on-surface-variant': '#CBD5E1',
+        'dark-outline': '#94A3B8',
+        'dark-outline-variant': '#334155',
+        'dark-inverse-surface': '#F8FAFC',
+        'dark-inverse-on-surface': '#0F172A',
+        'dark-inverse-primary': '#4F46E5',
+        'dark-shadow': '#020617',
+        'dark-scrim': '#020617',
+      },
+      borderRadius: {
+        'xs': '4px',
+        'sm': '6px',
+        'DEFAULT': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '12px',
+        'gutter-lg': '16px',
+        'gutter-xl': '24px',
+        'section': '32px',
+        'page-margin': '24px',
+      },
+      fontFamily: {
+        'display': ['"Wix Madefor Display"', 'sans-serif'],
+        'headline': ['"Wix Madefor Display"', 'sans-serif'],
+        'title': ['"Instrument Sans"', 'sans-serif'],
+        'body': ['"Instrument Sans"', 'sans-serif'],
+        'label': ['"Instrument Sans"', 'sans-serif'],
+        'mono': ['"Red Hat Mono"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['36px', { lineHeight: '44px', letterSpacing: '-0.5px', fontWeight: '700' }],
+        'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.25px', fontWeight: '700' }],
+        'headline-lg': ['24px', { lineHeight: '32px', letterSpacing: '-0.25px', fontWeight: '600' }],
+        'headline-md': ['18px', { lineHeight: '26px', letterSpacing: '-0.15px', fontWeight: '600' }],
+        'title-md': ['15px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '500' }],
+        'label-sm': ['11px', { lineHeight: '16px', letterSpacing: '0.3px', fontWeight: '600' }],
+        'mono-md': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '500' }],
+        'mono-sm': ['12px', { lineHeight: '16px', letterSpacing: '0px', fontWeight: '400' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '200ms',
+        'surface-exit': '150ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@500;600;700&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animate-spin-sync {
+      animation: spin-slow 0.9s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface font-body antialiased selection:bg-light-primary-container selection:text-light-on-primary-container">
+
+  <div class="min-h-[1024px] flex flex-col md:flex-row bg-light-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
+
+    <!-- Mobile Top Bar -->
+    <header class="md:hidden flex items-center justify-between px-gutter-lg py-gutter-md bg-light-surface-container-lowest border-b border-light-outline-variant sticky top-0 z-30">
+      <div class="flex items-center gap-gutter-sm">
+        <div class="w-8 h-8 rounded-sm bg-light-primary text-light-on-primary flex items-center justify-center font-headline text-title-md">B</div>
+        <div class="flex flex-col">
+          <span class="font-headline text-title-md text-light-on-surface" data-design-text-token="title-md">Buki Sage Connector</span>
+          <span class="font-mono text-mono-sm text-light-on-surface-variant" data-design-text-token="mono-sm">v2.4 · Intacct</span>
+        </div>
+      </div>
+      <button id="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" class="inline-flex items-center justify-center p-gutter-sm rounded-sm text-light-on-surface-variant hover:bg-light-surface-container hover:text-light-on-surface transition-colors duration-state-change">
+        <span class="material-symbols-outlined text-[22px]">menu</span>
+      </button>
+    </header>
+
+    <!-- Mobile Backdrop -->
+    <div id="mobile-backdrop" class="hidden fixed inset-0 bg-light-scrim/40 z-30 md:hidden"></div>
+
+    <!-- Collapsible Sidebar Navigation -->
+    <aside id="sidebar" aria-label="Primary navigation" class="fixed md:sticky top-0 left-0 z-40 min-h-[1024px] w-60 bg-light-surface-container-lowest border-r border-light-outline-variant flex flex-col justify-between transition-transform duration-surface-enter ease-surface-enter -translate-x-full md:translate-x-0 shrink-0" data-stitch-vh="min-h-[1024px]===min-h-screen">
+      <div class="flex flex-col gap-gutter-lg p-gutter-lg">
+        <!-- Brand & Collapse Toggle -->
+        <div class="flex items-center justify-between gap-gutter-sm">
+          <div class="flex items-center gap-gutter-md overflow-hidden">
+            <div class="w-8 h-8 shrink-0 rounded-sm bg-light-primary text-light-on-primary flex items-center justify-center font-headline text-title-md">
+              <span class="material-symbols-outlined text-[18px]" aria-hidden="true">sync_alt</span>
+            </div>
+            <div class="sidebar-label flex flex-col min-w-0">
+              <span class="font-headline text-title-md text-light-on-surface truncate" data-design-text-token="title-md">Buki × Sage</span>
+              <span class="font-mono text-mono-sm text-light-on-surface-variant truncate" data-design-text-token="mono-sm">Connector v2.4</span>
+            </div>
+          </div>
+          <button id="collapse-sidebar-btn" type="button" aria-label="Collapse sidebar" class="hidden md:inline-flex items-center justify-center p-gutter-xs rounded-sm text-light-outline hover:bg-light-surface-container hover:text-light-on-surface transition-colors duration-state-change">
+            <span id="collapse-icon" class="material-symbols-outlined text-[20px]">chevron_left</span>
+          </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="flex flex-col gap-gutter-xs" aria-label="Dashboard sections">
+          <button type="button" data-nav-target="dashboard" aria-current="page" class="nav-item flex items-center justify-between gap-gutter-md px-gutter-md py-gutter-sm rounded-sm bg-light-primary-container text-light-on-primary-container font-body text-label-lg transition-colors duration-state-change text-left">
+            <span class="flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">dashboard</span>
+              <span class="sidebar-label" data-design-text-token="label-lg">Dashboard</span>
+            </span>
+          </button>
+
+          <button type="button" data-nav-target="mappings" class="nav-item flex items-center justify-between gap-gutter-md px-gutter-md py-gutter-sm rounded-sm text-light-on-surface-variant hover:bg-light-surface-container hover:text-light-on-surface font-body text-label-lg transition-colors duration-state-change text-left">
+            <span class="flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">account_tree</span>
+              <span class="sidebar-label" data-design-text-token="label-lg">Mappings</span>
+            </span>
+            <span id="nav-unmapped-badge" class="sidebar-label inline-flex items-center justify-center px-gutter-xs py-0.5 rounded-full bg-warning-container text-on-warning-container font-mono text-label-sm tabular-nums" data-design-text-token="label-sm">2</span>
+          </button>
+
+          <button type="button" data-nav-target="logs" class="nav-item flex items-center justify-between gap-gutter-md px-gutter-md py-gutter-sm rounded-sm text-light-on-surface-variant hover:bg-light-surface-container hover:text-light-on-surface font-body text-label-lg transition-colors duration-state-change text-left">
+            <span class="flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">receipt_long</span>
+              <span class="sidebar-label" data-design-text-token="label-lg">Sync Logs</span>
+            </span>
+            <span id="nav-failed-badge" class="sidebar-label inline-flex items-center justify-center px-gutter-xs py-0.5 rounded-full bg-light-error-container text-light-on-error-container font-mono text-label-sm tabular-nums" data-design-text-token="label-sm">2</span>
+          </button>
+
+          <button type="button" data-nav-target="settings" class="nav-item flex items-center justify-between gap-gutter-md px-gutter-md py-gutter-sm rounded-sm text-light-on-surface-variant hover:bg-light-surface-container hover:text-light-on-surface font-body text-label-lg transition-colors duration-state-change text-left">
+            <span class="flex items-center gap-gutter-md">
+              <span class="material-symbols-outlined text-[20px]" aria-hidden="true">settings</span>
+              <span class="sidebar-label" data-design-text-token="label-lg">Settings</span>
+            </span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Sidebar Footer: Environment & Workspace -->
+      <div class="p-gutter-lg border-t border-light-outline-variant">
+        <div class="flex items-center gap-gutter-md">
+          <div class="w-8 h-8 shrink-0 rounded-full bg-light-surface-container text-light-on-surface flex items-center justify-center font-body text-label-sm border border-light-outline-variant">
+            <span data-design-text-token="label-sm">AC</span>
+          </div>
+          <div class="sidebar-label flex flex-col min-w-0">
+            <span class="font-body text-label-lg text-light-on-surface truncate" data-design-text-token="label-lg">Acme Finance Ltd</span>
+            <span class="font-mono text-mono-sm text-light-on-surface-variant truncate" data-design-text-token="mono-sm">US-CORP-01</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 min-w-0">
+      <div class="max-w-7xl mx-auto px-gutter-lg md:px-page-margin py-gutter-xl flex flex-col gap-gutter-xl">
+
+        <!-- Page Header & Quick Section Tabs -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-gutter-md">
+          <div class="flex flex-col gap-gutter-xs">
+            <h1 id="page-title" class="font-headline text-headline-lg text-light-on-surface" data-design-text-token="headline-lg">Integration Overview</h1>
+            <p id="page-subtitle" class="font-body text-body-md text-light-on-surface-variant" data-design-text-token="body-md">Monitor Sage ledger health, expense category mappings, and automated sync activity.</p>
+          </div>
+          <div class="inline-flex items-center p-gutter-xs rounded-sm bg-light-surface-container border border-light-outline-variant self-start">
+            <button type="button" data-tab-target="dashboard" class="top-tab px-gutter-md py-gutter-xs rounded-xs bg-light-surface-container-lowest text-light-on-surface font-body text-label-lg shadow-sm transition-colors duration-state-change">Overview</button>
+            <button type="button" data-tab-target="mappings" class="top-tab px-gutter-md py-gutter-xs rounded-xs text-light-on-surface-variant hover:text-light-on-surface font-body text-label-lg transition-colors duration-state-change">Mappings</button>
+            <button type="button" data-tab-target="logs" class="top-tab px-gutter-md py-gutter-xs rounded-xs text-light-on-surface-variant hover:text-light-on-surface font-body text-label-lg transition-colors duration-state-change">Sync Logs</button>
+            <button type="button" data-tab-target="settings" class="top-tab px-gutter-md py-gutter-xs rounded-xs text-light-on-surface-variant hover:text-light-on-surface font-body text-label-lg transition-colors duration-state-change">Settings</button>
+          </div>
+        </div>
+
+        <!-- Toast Feedback Banner (Hidden by default) -->
+        <div id="toast-banner" role="status" class="hidden items-center justify-between gap-gutter-md px-gutter-lg py-gutter-md rounded bg-light-inverse-surface text-light-inverse-on-surface">
+          <div class="flex items-center gap-gutter-sm">
+            <span id="toast-icon" class="material-symbols-outlined text-[18px] text-success" aria-hidden="true">check_circle</span>
+            <span id="toast-message" class="font-body text-body-md" data-design-text-token="body-md">Action completed.</span>
+          </div>
+          <button id="toast-close" type="button" aria-label="Dismiss notification" class="text-light-inverse-on-surface/70 hover:text-light-inverse-on-surface">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        </div>
+
+        <!-- =========================================================
+             SECTION 1: OVERVIEW (Connection Banner + KPI Metrics)
+             ========================================================= -->
+        <section id="section-overview" class="flex flex-col gap-gutter-xl">
+
+          <!-- Connection Status Banner -->
+          <div data-component-id="banner-connection" data-component-type="banner" data-component-variant="status" class="bg-light-surface-container-lowest border border-light-outline-variant rounded p-gutter-xl flex flex-col lg:flex-row lg:items-center justify-between gap-gutter-lg">
+            <div class="flex items-start sm:items-center gap-gutter-lg">
+              <div id="conn-icon-box" class="w-11 h-11 shrink-0 rounded bg-success-container text-on-success-container flex items-center justify-center">
+                <span id="conn-icon" class="material-symbols-outlined text-[22px]" aria-hidden="true">link</span>
+              </div>
+              <div class="flex flex-col gap-gutter-xs">
+                <div class="flex flex-wrap items-center gap-gutter-sm">
+                  <span id="conn-badge" class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-success-container text-on-success-container font-body text-label-sm" role="status">
+                    <span class="relative flex h-2 w-2" aria-hidden="true">
+                      <span id="conn-pulse" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+                      <span id="conn-dot" class="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
+                    </span>
+                    <span id="conn-status-text" data-design-text-token="label-sm">Connected</span>
+                  </span>
+                  <h2 id="conn-title" class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Sage Intacct · US-CORP-01</h2>
+                </div>
+                <div class="flex flex-wrap items-center gap-gutter-md font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">
+                  <span>Last synced <span id="last-synced-ts" class="font-mono text-mono-sm text-light-on-surface tabular-nums">Nov 25, 2026 · 08:34:12 PST</span></span>
+                  <span class="hidden sm:inline text-light-outline-variant" aria-hidden="true">|</span>
+                  <span>Next run in <span class="font-mono text-mono-sm text-light-on-surface tabular-nums">26m</span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-gutter-sm">
+              <button id="btn-sync-now" data-component-id="button-with-icon" data-component-type="button" data-component-variant="with-icon" type="button" class="inline-flex items-center justify-center gap-gutter-sm px-gutter-lg py-gutter-sm rounded-sm bg-light-primary text-light-on-primary font-body text-label-lg hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-primary transition-colors duration-state-change">
+                <span id="sync-btn-icon" class="material-symbols-outlined text-[18px]" aria-hidden="true">sync</span>
+                <span id="sync-btn-label" data-design-text-token="label-lg">Sync Now</span>
+              </button>
+
+              <button id="btn-test-conn" data-component-id="button-secondary" data-component-type="button" data-component-variant="secondary" type="button" class="inline-flex items-center justify-center gap-gutter-sm px-gutter-lg py-gutter-sm rounded-sm bg-light-surface-container-lowest text-light-on-surface border border-light-outline-variant font-body text-label-lg hover:bg-light-surface-container focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-primary transition-colors duration-state-change">
+                <span class="material-symbols-outlined text-[18px] text-light-on-surface-variant" aria-hidden="true">speed</span>
+                <span data-design-text-token="label-lg">Test Connection</span>
+              </button>
+
+              <button id="btn-disconnect" data-component-id="button-destructive" data-component-type="button" data-component-variant="destructive" type="button" class="inline-flex items-center justify-center gap-gutter-sm px-gutter-lg py-gutter-sm rounded-sm bg-light-surface-container-lowest text-light-error border border-light-outline-variant font-body text-label-lg hover:bg-light-error-container focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-error transition-colors duration-state-change">
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">link_off</span>
+                <span id="disconnect-btn-label" data-design-text-token="label-lg">Disconnect</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Key Metrics Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-lg items-stretch">
+            <!-- Metric 1: Total Documents Processed -->
+            <article data-component-id="card-outlined" data-component-type="card" data-component-variant="outlined" class="h-full bg-light-surface-container-lowest border border-light-outline-variant rounded p-gutter-xl flex flex-col justify-between gap-gutter-md">
+              <header class="flex items-center justify-between gap-gutter-sm">
+                <span class="font-body text-label-lg text-light-on-surface-variant" data-design-text-token="label-lg">Total Documents Processed</span>
+                <span class="material-symbols-outlined text-[20px] text-light-outline" aria-hidden="true">description</span>
+              </header>
+              <div class="flex items-baseline justify-between gap-gutter-sm">
+                <p id="metric-total-docs" class="font-mono text-display-lg text-light-on-surface tabular-nums" data-design-text-token="display-lg">14,826</p>
+                <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-0.5 rounded-full bg-success-container text-on-success-container font-mono text-label-sm tabular-nums" data-design-text-token="label-sm">
+                  <span class="material-symbols-outlined text-[14px]" aria-hidden="true">trending_up</span>
+                  <span>+12.4%</span>
+                </span>
+              </div>
+              <p class="font-body text-body-sm text-light-outline" data-design-text-token="body-sm">Invoices, receipts &amp; credit notes synced MTD</p>
+            </article>
+
+            <!-- Metric 2: Pending Syncs -->
+            <article data-component-id="card-outlined" data-component-type="card" data-component-variant="outlined" class="h-full bg-light-surface-container-lowest border border-light-outline-variant rounded p-gutter-xl flex flex-col justify-between gap-gutter-md">
+              <header class="flex items-center justify-between gap-gutter-sm">
+                <span class="font-body text-label-lg text-light-on-surface-variant" data-design-text-token="label-lg">Pending Syncs</span>
+                <span class="material-symbols-outlined text-[20px] text-warning" aria-hidden="true">schedule</span>
+              </header>
+              <div class="flex items-baseline justify-between gap-gutter-sm">
+                <p id="metric-pending" class="font-mono text-display-lg text-light-on-surface tabular-nums" data-design-text-token="display-lg">18</p>
+                <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-0.5 rounded-full bg-warning-container text-on-warning-container font-body text-label-sm tabular-nums" data-design-text-token="label-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-warning" aria-hidden="true"></span>
+                  <span>Queued</span>
+                </span>
+              </div>
+              <p class="font-body text-body-sm text-light-outline" data-design-text-token="body-sm">Awaiting next hourly batch or manual trigger</p>
+            </article>
+
+            <!-- Metric 3: Failed Transactions Today -->
+            <article data-component-id="card-outlined" data-component-type="card" data-component-variant="outlined" class="h-full bg-light-surface-container-lowest border border-light-outline-variant rounded p-gutter-xl flex flex-col justify-between gap-gutter-md">
+              <header class="flex items-center justify-between gap-gutter-sm">
+                <span class="font-body text-label-lg text-light-on-surface-variant" data-design-text-token="label-lg">Failed Transactions Today</span>
+                <span class="material-symbols-outlined text-[20px] text-light-error" aria-hidden="true">error</span>
+              </header>
+              <div class="flex items-baseline justify-between gap-gutter-sm">
+                <p id="metric-failed" class="font-mono text-display-lg text-light-on-surface tabular-nums" data-design-text-token="display-lg">2</p>
+                <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-0.5 rounded-full bg-light-error-container text-light-on-error-container font-body text-label-sm tabular-nums" data-design-text-token="label-sm">
+                  <span class="w-1.5 h-1.5 rounded-full bg-light-error" aria-hidden="true"></span>
+                  <span>Action needed</span>
+                </span>
+              </div>
+              <p class="font-body text-body-sm text-light-outline" data-design-text-token="body-sm">Review tax mismatches in Sync Logs below</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             SECTION 2: ACCOUNT & TAX MAPPING TABLE
+             ========================================================= -->
+        <section id="section-mappings" class="flex flex-col gap-gutter-lg">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-gutter-md">
+            <div class="flex flex-col gap-gutter-xs">
+              <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Account &amp; Tax Mappings</h2>
+              <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Click any row to map Buki expense categories and tax codes to Sage Ledger Accounts.</p>
+            </div>
+
+            <!-- Search & Status Dropdown Filter -->
+            <div class="flex flex-wrap items-center gap-gutter-sm">
+              <div class="relative">
+                <span class="material-symbols-outlined text-[18px] text-light-outline absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">search</span>
+                <input id="mapping-search" type="search" placeholder="Filter categories or codes..." aria-label="Filter account mappings" class="pl-9 pr-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-body text-body-sm text-light-on-surface placeholder:text-light-outline focus:border-light-primary focus:ring-1 focus:ring-light-primary w-56">
+              </div>
+              <select id="mapping-status-filter" aria-label="Filter by mapping status" class="px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-body text-label-lg text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
+                <option value="all">All Statuses</option>
+                <option value="mapped">Mapped</option>
+                <option value="unmapped">Unmapped</option>
+              </select>
+            </div>
+          </div>
+
+          <div data-component-id="table-interactive" data-component-type="table" data-component-variant="interactive" class="bg-light-surface-container-lowest border border-light-outline-variant rounded overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-light-surface-container-low border-b border-light-outline-variant">
+                  <tr>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Buki Category</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Sage Account Code</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Sage Account Name</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Tax Mapping</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Status</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider text-right">Edit</th>
+                  </tr>
+                </thead>
+                <tbody id="mapping-table-body" class="divide-y divide-light-outline-variant">
+                  <!-- Populated and updated by inline script -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Empty State for Unmapped / Filtered Views -->
+            <div id="mapping-empty-state" class="hidden flex-col items-center justify-center text-center py-section px-gutter-xl gap-gutter-md bg-light-surface-container-lowest">
+              <div class="w-12 h-12 rounded-full bg-success-container text-on-success-container flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]" aria-hidden="true">task_alt</span>
+              </div>
+              <div class="flex flex-col gap-gutter-xs max-w-md">
+                <h3 id="empty-state-title" class="font-headline text-title-md text-light-on-surface" data-design-text-token="title-md">All Buki accounts are mapped</h3>
+                <p id="empty-state-desc" class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Every active expense category and tax code is linked to a Sage Intacct ledger account.</p>
+              </div>
+              <button id="btn-reset-mapping-filter" type="button" class="inline-flex items-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-body text-label-lg text-light-on-surface hover:bg-light-surface-container transition-colors duration-state-change">
+                <span data-design-text-token="label-lg">Show All Mappings</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             SECTION 3: SYNC LOGS / ERROR HANDLING VIEW
+             ========================================================= -->
+        <section id="section-logs" class="flex flex-col gap-gutter-lg">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-gutter-md">
+            <div class="flex flex-col gap-gutter-xs">
+              <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Sync Logs &amp; Error Handling</h2>
+              <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Recent ledger synchronization batches. Expand failed rows to inspect Sage API diagnostics and retry.</p>
+            </div>
+            <div class="flex items-center gap-gutter-sm">
+              <select id="logs-status-filter" aria-label="Filter sync logs by status" class="px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-body text-label-lg text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
+                <option value="all">All Events</option>
+                <option value="success">Success</option>
+                <option value="warning">Warning</option>
+                <option value="failed">Failed</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bg-light-surface-container-lowest border border-light-outline-variant rounded overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead class="bg-light-surface-container-low border-b border-light-outline-variant">
+                  <tr>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Timestamp</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Batch / Document</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Direction</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider">Status</th>
+                    <th scope="col" class="px-gutter-lg py-gutter-md font-body text-label-sm text-light-on-surface-variant uppercase tracking-wider text-right">Details</th>
+                  </tr>
+                </thead>
+                <tbody id="logs-table-body" class="divide-y divide-light-outline-variant">
+                  <!-- Populated by inline script -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             SECTION 4: SETTINGS PANEL
+             ========================================================= -->
+        <section id="section-settings" class="hidden flex-col gap-gutter-xl">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-xl items-start">
+
+            <!-- Automated Sync Frequency -->
+            <div class="bg-light-surface-container-lowest border border-light-outline-variant rounded p-gutter-xl flex flex-col gap-gutter-lg">
+              <div class="flex flex-col gap-gutter-xs border-b border-light-outline-variant pb-gutter-md">
+                <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Automated Sync Frequency</h2>
+                <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Control how often Buki pushes approved expenses and pulls Sage chart-of-accounts updates.</p>
+              </div>
+
+              <div class="flex flex-col divide-y divide-light-outline-variant">
+                <!-- Toggle: Real-time -->
+                <div data-component-id="toggle-description" data-component-type="toggle" data-component-variant="with-description" class="flex items-center justify-between gap-gutter-lg py-gutter-md first:pt-0">
+                  <div class="flex flex-col gap-gutter-xs">
+                    <span class="font-body text-body-md font-medium text-light-on-surface" data-design-text-token="body-md">Real-time Sync</span>
+                    <span class="font-body text-body-sm text-light-on-surface-variant" id="freq-realtime-desc" data-design-text-token="body-sm">Push approved Buki transactions to Sage immediately via webhook.</span>
+                  </div>
+                  <button type="button" role="switch" aria-checked="true" aria-describedby="freq-realtime-desc" data-sync-toggle="realtime" class="sync-toggle relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-light-primary transition-colors duration-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-primary">
+                    <span class="toggle-thumb pointer-events-none inline-block h-5 w-5 translate-x-5 rounded-full bg-light-on-primary shadow-sm transition-transform duration-state-change"></span>
+                  </button>
+                </div>
+
+                <!-- Toggle: Hourly -->
+                <div data-component-id="toggle-description" data-component-type="toggle" data-component-variant="with-description" class="flex items-center justify-between gap-gutter-lg py-gutter-md">
+                  <div class="flex flex-col gap-gutter-xs">
+                    <span class="font-body text-body-md font-medium text-light-on-surface" data-design-text-token="body-md">Hourly Batch Reconciliation</span>
+                    <span class="font-body text-body-sm text-light-on-surface-variant" id="freq-hourly-desc" data-design-text-token="body-sm">Verify ledger totals and sync pending items at the top of each hour.</span>
+                  </div>
+                  <button type="button" role="switch" aria-checked="true" aria-describedby="freq-hourly-desc" data-sync-toggle="hourly" class="sync-toggle relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-light-primary transition-colors duration-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-primary">
+                    <span class="toggle-thumb pointer-events-none inline-block h-5 w-5 translate-x-5 rounded-full bg-light-on-primary shadow-sm transition-transform duration-state-change"></span>
+                  </button>
+                </div>
+
+                <!-- Toggle: Daily -->
+                <div data-component-id="toggle-description" data-component-type="toggle" data-component-variant="with-description" class="flex items-center justify-between gap-gutter-lg py-gutter-md last:pb-0">
+                  <div class="flex flex-col gap-gutter-xs">
+                    <span class="font-body text-body-md font-medium text-light-on-surface" data-design-text-token="body-md">Daily Ledger Digest</span>
+                    <span class="font-body text-body-sm text-light-on-surface-variant" id="freq-daily-desc" data-design-text-token="body-sm">Full chart-of-accounts refresh and EOD summary at 23:00 UTC.</span>
+                  </div>
+                  <button type="button" role="switch" aria-checked="false" aria-describedby="freq-daily-desc" data-sync-toggle="daily" class="sync-toggle relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-light-surface-container-highest transition-colors duration-state-change focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-primary">
+                    <span class="toggle-thumb pointer-events-none inline-block h-5 w-5 translate-x-0 rounded-full bg-light-on-primary shadow-sm transition-transform duration-state-change"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sage API Credentials & Webhook URL -->
+            <form id="settings-form" class="bg-light-surface-container-lowest border border-light-outline-variant rounded p-gutter-xl flex flex-col gap-gutter-lg">
+              <div class="flex flex-col gap-gutter-xs border-b border-light-outline-variant pb-gutter-md">
+                <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Sage API Credentials &amp; Webhooks</h2>
+                <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Authenticate with Sage Intacct Web Services and configure inbound event delivery.</p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter-lg">
+                <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-xs">
+                  <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Sage Company ID</span>
+                  <input type="text" value="ACME-INTACCT-US" class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
+                </label>
+
+                <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-xs">
+                  <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Web Services Sender ID</span>
+                  <input type="text" value="buki_erp_prod_01" class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
+                </label>
+              </div>
+
+              <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-xs">
+                <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">API Client Secret</span>
+                <div class="relative">
+                  <input id="api-secret-input" type="password" value="sk_live_sage_98a7f6d4c2b10e4a" class="w-full pl-gutter-md pr-10 py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
+                  <button id="toggle-secret-btn" type="button" aria-label="Reveal API secret" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-light-outline hover:text-light-on-surface p-1">
+                    <span id="secret-eye-icon" class="material-symbols-outlined text-[18px]">visibility</span>
+                  </button>
+                </div>
+              </label>
+
+              <label data-component-id="input-field-text" data-component-type="input-field" data-component-variant="text" class="flex flex-col gap-gutter-xs">
+                <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Webhook URL</span>
+                <input type="url" value="https://api.buki.finance/v2/webhooks/sage-intacct" aria-describedby="webhook-url-hint" class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
+                <span id="webhook-url-hint" class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Signed with HMAC-SHA256 for real-time Sage journal confirmations.</span>
+              </label>
+
+              <div class="flex items-center justify-end gap-gutter-sm pt-gutter-sm border-t border-light-outline-variant">
+                <button type="submit" data-component-id="button-primary" data-component-type="button" data-component-variant="primary" class="inline-flex items-center justify-center gap-gutter-sm px-gutter-lg py-gutter-sm rounded-sm bg-light-primary text-light-on-primary font-body text-label-lg hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-primary transition-colors duration-state-change">
+                  <span data-design-text-token="label-lg">Save Configuration</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================================
+       EDIT MAPPING SLIDE-OVER DRAWER
+       ========================================================= -->
+  <div id="drawer-backdrop" class="hidden fixed inset-0 bg-light-scrim/40 z-50"></div>
+  <aside id="mapping-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" class="hidden fixed top-0 right-0 z-50 min-h-[1024px] w-full max-w-md bg-light-surface-container-lowest border-l border-light-outline-variant shadow-xl flex flex-col justify-between" data-stitch-vh="min-h-[1024px]===min-h-screen">
+    <div class="p-gutter-xl flex flex-col gap-gutter-xl">
+      <div class="flex items-start justify-between gap-gutter-md border-b border-light-outline-variant pb-gutter-lg">
+        <div class="flex flex-col gap-gutter-xs">
+          <span class="font-body text-label-sm text-light-primary uppercase tracking-wider" data-design-text-token="label-sm">Edit Ledger Mapping</span>
+          <h2 id="drawer-title" class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Category Name</h2>
+        </div>
+        <button id="close-drawer-btn" type="button" aria-label="Close mapping drawer" class="inline-flex items-center justify-center p-gutter-sm rounded-sm text-light-on-surface-variant hover:bg-light-surface-container hover:text-light-on-surface transition-colors duration-state-change">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <form id="drawer-form" class="flex flex-col gap-gutter-lg">
+        <label class="flex flex-col gap-gutter-xs">
+          <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Buki Expense Category</span>
+          <input id="drawer-buki-category" type="text" readonly class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container border border-light-outline-variant font-body text-body-md text-light-on-surface-variant cursor-not-allowed">
+        </label>
+
+        <label class="flex flex-col gap-gutter-xs">
+          <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Sage Ledger Account</span>
+          <select id="drawer-sage-account" class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-body text-body-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
+            <option value>— Select Sage Ledger Account —</option>
+            <option value="6240-00|SaaS &amp; Cloud Infrastructure">6240-00 · SaaS &amp; Cloud Infrastructure</option>
+            <option value="6410-00|Travel &amp; Lodging Expense">6410-00 · Travel &amp; Lodging Expense</option>
+            <option value="6520-00|Client Meals &amp; Entertainment">6520-00 · Client Meals &amp; Entertainment</option>
+            <option value="6100-00|Office Supplies &amp; Hardware">6100-00 · Office Supplies &amp; Hardware</option>
+            <option value="6750-00|Professional &amp; Legal Fees">6750-00 · Professional &amp; Legal Fees</option>
+            <option value="6310-00|Marketing &amp; Paid Acquisition">6310-00 · Marketing &amp; Paid Acquisition</option>
+          </select>
+        </label>
+
+        <label class="flex flex-col gap-gutter-xs">
+          <span class="font-body text-label-lg text-light-on-surface" data-design-text-token="label-lg">Sage Tax Code</span>
+          <select id="drawer-tax-code" class="w-full px-gutter-md py-gutter-sm rounded-sm bg-light-surface-container-lowest border border-light-outline-variant font-mono text-mono-md text-light-on-surface focus:border-light-primary focus:ring-1 focus:ring-light-primary">
+            <option value>— Unassigned —</option>
+            <option value="VAT-20 (Standard)">VAT-20 (Standard)</option>
+            <option value="US-CA-SALES (8.25%)">US-CA-SALES (8.25%)</option>
+            <option value="TAX-EXEMPT (0%)">TAX-EXEMPT (0%)</option>
+            <option value="ZERO-RATED (0%)">ZERO-RATED (0%)</option>
+          </select>
+        </label>
+      </form>
+    </div>
+
+    <div class="p-gutter-xl border-t border-light-outline-variant bg-light-surface-container-low flex items-center justify-end gap-gutter-sm">
+      <button id="cancel-drawer-btn" type="button" class="inline-flex items-center justify-center px-gutter-lg py-gutter-sm rounded-sm bg-light-surface-container-lowest text-light-on-surface border border-light-outline-variant font-body text-label-lg hover:bg-light-surface-container transition-colors duration-state-change">
+        <span data-design-text-token="label-lg">Cancel</span>
+      </button>
+      <button id="save-drawer-btn" type="button" class="inline-flex items-center justify-center px-gutter-lg py-gutter-sm rounded-sm bg-light-primary text-light-on-primary font-body text-label-lg hover:opacity-90 transition-colors duration-state-change">
+        <span data-design-text-token="label-lg">Save Mapping</span>
+      </button>
+    </div>
+  </aside>
+
+  <script>
+    (function () {
+      // --- State ---
+      const state = {
+        activeView: 'dashboard',
+        sidebarCollapsed: false,
+        connected: true,
+        editingMappingId: null,
+        expandedLogIds: new Set(['log-1']),
+        mappings: [
+          {
+            id: 'map-1',
+            bukiCategory: 'Software & Subscriptions',
+            sageCode: '6240-00',
+            sageName: 'SaaS & Cloud Infrastructure',
+            taxMapping: 'VAT-20 (Standard)',
+            status: 'mapped'
+          },
+          {
+            id: 'map-2',
+            bukiCategory: 'Airfare & Rail Travel',
+            sageCode: '6410-00',
+            sageName: 'Travel & Lodging Expense',
+            taxMapping: 'ZERO-RATED (0%)',
+            status: 'mapped'
+          },
+          {
+            id: 'map-3',
+            bukiCategory: 'Client Dining & Events',
+            sageCode: '6520-00',
+            sageName: 'Client Meals & Entertainment',
+            taxMapping: 'US-CA-SALES (8.25%)',
+            status: 'mapped'
+          },
+          {
+            id: 'map-4',
+            bukiCategory: 'External Legal Counsel',
+            sageCode: '',
+            sageName: 'Not assigned',
+            taxMapping: '',
+            status: 'unmapped'
+          },
+          {
+            id: 'map-5',
+            bukiCategory: 'Paid Search & Ads',
+            sageCode: '',
+            sageName: 'Not assigned',
+            taxMapping: '',
+            status: 'unmapped'
+          }
+        ],
+        logs: [
+          {
+            id: 'log-1',
+            timestamp: '08:34:12',
+            batchId: 'EXP-2026-1184',
+            vendor: 'AWS Europe',
+            direction: 'Buki → Sage',
+            status: 'failed',
+            httpCode: 'HTTP 422',
+            errorTitle: 'Tax code mismatch',
+            errorDetail: "Sage Intacct rejected line #1: Buki tax code 'VAT-20-UK' is not mapped to active tax schedule 'US-CA-SALES' in entity US-CORP-01."
+          },
+          {
+            id: 'log-2',
+            timestamp: '08:31:05',
+            batchId: 'EXP-2026-1183',
+            vendor: 'Delta Corporate',
+            direction: 'Buki → Sage',
+            status: 'success',
+            httpCode: '',
+            errorTitle: '',
+            errorDetail: ''
+          },
+          {
+            id: 'log-3',
+            timestamp: '08:15:40',
+            batchId: 'COA-SYNC-092',
+            vendor: 'Ledger Refresh',
+            direction: 'Sage → Buki',
+            status: 'warning',
+            httpCode: 'SYNC WARN',
+            errorTitle: '2 unmapped Buki categories detected',
+            errorDetail: 'New Sage ledger accounts 6310-00 and 6750-00 were imported, but 2 Buki categories remain unmapped.'
+          },
+          {
+            id: 'log-4',
+            timestamp: '07:45:00',
+            batchId: 'EXP-2026-1182',
+            vendor: 'Figma Enterprise',
+            direction: 'Buki → Sage',
+            status: 'failed',
+            httpCode: 'HTTP 409',
+            errorTitle: 'Accounting period closed',
+            errorDetail: 'Posting date 2026-10-31 falls in a closed accounting period. Re-open period or override posting date to 2026-11-01.'
+          },
+          {
+            id: 'log-5',
+            timestamp: '07:00:02',
+            batchId: 'BATCH-HOURLY-0700',
+            vendor: '42 documents',
+            direction: 'Buki → Sage',
+            status: 'success',
+            httpCode: '',
+            errorTitle: '',
+            errorDetail: ''
+          }
+        ]
+      };
+
+      // --- Elements ---
+      const sidebar = document.getElementById('sidebar');
+      const collapseBtn = document.getElementById('collapse-sidebar-btn');
+      const collapseIcon = document.getElementById('collapse-icon');
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileBackdrop = document.getElementById('mobile-backdrop');
+      const navItems = document.querySelectorAll('.nav-item');
+      const topTabs = document.querySelectorAll('.top-tab');
+
+      const sectionOverview = document.getElementById('section-overview');
+      const sectionMappings = document.getElementById('section-mappings');
+      const sectionLogs = document.getElementById('section-logs');
+      const sectionSettings = document.getElementById('section-settings');
+
+      const pageTitle = document.getElementById('page-title');
+      const pageSubtitle = document.getElementById('page-subtitle');
+
+      const toastBanner = document.getElementById('toast-banner');
+      const toastIcon = document.getElementById('toast-icon');
+      const toastMessage = document.getElementById('toast-message');
+      const toastClose = document.getElementById('toast-close');
+
+      // --- Toast Helper ---
+      let toastTimer = null;
+      function showToast(msg, tone) {
+        toastMessage.textContent = msg;
+        toastIcon.textContent = tone === 'error' ? 'error' : tone === 'warning' ? 'warning' : 'check_circle';
+        toastIcon.className = 'material-symbols-outlined text-[18px] ' + (tone === 'error' ? 'text-light-error' : tone === 'warning' ? 'text-warning' : 'text-success');
+        toastBanner.classList.remove('hidden');
+        toastBanner.classList.add('flex');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastBanner.classList.add('hidden');
+          toastBanner.classList.remove('flex');
+        }, 4000);
+      }
+      toastClose.addEventListener('click', () => {
+        toastBanner.classList.add('hidden');
+        toastBanner.classList.remove('flex');
+      });
+
+      // --- Navigation & View Switching ---
+      const viewMeta = {
+        dashboard: {
+          title: 'Integration Overview',
+          subtitle: 'Monitor Sage ledger health, expense category mappings, and automated sync activity.'
+        },
+        mappings: {
+          title: 'Account & Tax Mappings',
+          subtitle: 'Map Buki expense categories and tax codes to your Sage Intacct Chart of Accounts.'
+        },
+        logs: {
+          title: 'Sync Logs & Diagnostics',
+          subtitle: 'Inspect batch history, diagnose Sage API errors, and retry failed transactions.'
+        },
+        settings: {
+          title: 'Connector Settings',
+          subtitle: 'Configure automated sync schedules, Sage API credentials, and webhook endpoints.'
+        }
+      };
+
+      function switchView(target) {
+        state.activeView = target;
+        pageTitle.textContent = viewMeta[target].title;
+        pageSubtitle.textContent = viewMeta[target].subtitle;
+
+        // Update Sidebar Active Styles
+        navItems.forEach((btn) => {
+          const isMatch = btn.dataset.navTarget === target;
+          btn.setAttribute('aria-current', isMatch ? 'page' : 'false');
+          if (isMatch) {
+            btn.className = 'nav-item flex items-center justify-between gap-gutter-md px-gutter-md py-gutter-sm rounded-sm bg-light-primary-container text-light-on-primary-container font-body text-label-lg transition-colors duration-state-change text-left';
+          } else {
+            btn.className = 'nav-item flex items-center justify-between gap-gutter-md px-gutter-md py-gutter-sm rounded-sm text-light-on-surface-variant hover:bg-light-surface-container hover:text-light-on-surface font-body text-label-lg transition-colors duration-state-change text-left';
+          }
+        });
+
+        // Update Top Tabs
+        topTabs.forEach((tab) => {
+          const isMatch = tab.dataset.tabTarget === target;
+          if (isMatch) {
+            tab.className = 'top-tab px-gutter-md py-gutter-xs rounded-xs bg-light-surface-container-lowest text-light-on-surface font-body text-label-lg shadow-sm transition-colors duration-state-change';
+          } else {
+            tab.className = 'top-tab px-gutter-md py-gutter-xs rounded-xs text-light-on-surface-variant hover:text-light-on-surface font-body text-label-lg transition-colors duration-state-change';
+          }
+        });
+
+        // Toggle Sections
+        sectionOverview.classList.toggle('hidden', target !== 'dashboard');
+        sectionMappings.classList.toggle('hidden', target !== 'dashboard' && target !== 'mappings');
+        sectionLogs.classList.toggle('hidden', target !== 'dashboard' && target !== 'logs');
+        sectionSettings.classList.toggle('hidden', target !== 'settings');
+        if (target === 'settings') {
+          sectionSettings.classList.add('flex');
+        }
+
+        // Close mobile drawer if open
+        sidebar.classList.add('-translate-x-full');
+        mobileBackdrop.classList.add('hidden');
+      }
+
+      navItems.forEach((btn) => btn.addEventListener('click', () => switchView(btn.dataset.navTarget)));
+      topTabs.forEach((tab) => tab.addEventListener('click', () => switchView(tab.dataset.tabTarget)));
+
+      // --- Collapsible Sidebar ---
+      collapseBtn.addEventListener('click', () => {
+        state.sidebarCollapsed = !state.sidebarCollapsed;
+        sidebar.classList.toggle('w-60', !state.sidebarCollapsed);
+        sidebar.classList.toggle('w-[68px]', state.sidebarCollapsed);
+        collapseIcon.textContent = state.sidebarCollapsed ? 'chevron_right' : 'chevron_left';
+        document.querySelectorAll('.sidebar-label').forEach((el) => {
+          el.classList.toggle('hidden', state.sidebarCollapsed);
+        });
+      });
+
+      mobileMenuBtn.addEventListener('click', () => {
+        sidebar.classList.remove('-translate-x-full');
+        mobileBackdrop.classList.remove('hidden');
+      });
+      mobileBackdrop.addEventListener('click', () => {
+        sidebar.classList.add('-translate-x-full');
+        mobileBackdrop.classList.add('hidden');
+      });
+
+      // --- Connection Banner Actions ---
+      const btnSyncNow = document.getElementById('btn-sync-now');
+      const syncBtnIcon = document.getElementById('sync-btn-icon');
+      const syncBtnLabel = document.getElementById('sync-btn-label');
+      const btnTestConn = document.getElementById('btn-test-conn');
+      const btnDisconnect = document.getElementById('btn-disconnect');
+      const disconnectLabel = document.getElementById('disconnect-btn-label');
+      const lastSyncedTs = document.getElementById('last-synced-ts');
+      const metricPending = document.getElementById('metric-pending');
+      const metricTotalDocs = document.getElementById('metric-total-docs');
+
+      btnSyncNow.addEventListener('click', () => {
+        if (!state.connected) {
+          showToast('Reconnect to Sage Intacct before running a manual sync.', 'warning');
+          return;
+        }
+        syncBtnIcon.classList.add('animate-spin-sync');
+        syncBtnLabel.textContent = 'Syncing...';
+        btnSyncNow.disabled = true;
+        setTimeout(() => {
+          syncBtnIcon.classList.remove('animate-spin-sync');
+          syncBtnLabel.textContent = 'Sync Now';
+          btnSyncNow.disabled = false;
+          const now = new Date();
+          const hh = String(now.getHours()).padStart(2, '0');
+          const mm = String(now.getMinutes()).padStart(2, '0');
+          const ss = String(now.getSeconds()).padStart(2, '0');
+          lastSyncedTs.textContent = `Nov 25, 2026 · ${hh}:${mm}:${ss} PST`;
+          metricPending.textContent = '0';
+          metricTotalDocs.textContent = '14,844';
+          showToast('Synced 18 queued documents to Sage Intacct.', 'success');
+        }, 900);
+      });
+
+      btnTestConn.addEventListener('click', () => {
+        if (!state.connected) {
+          showToast('Connection test failed: Sage Intacct integration is disconnected.', 'error');
+          return;
+        }
+        showToast('Sage Intacct API reachable · TLS 1.3 handshake in 142ms.', 'success');
+      });
+
+      btnDisconnect.addEventListener('click', () => {
+        state.connected = !state.connected;
+        const badge = document.getElementById('conn-badge');
+        const pulse = document.getElementById('conn-pulse');
+        const dot = document.getElementById('conn-dot');
+        const statusText = document.getElementById('conn-status-text');
+        const iconBox = document.getElementById('conn-icon-box');
+        const icon = document.getElementById('conn-icon');
+
+        if (state.connected) {
+          badge.className = 'inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-success-container text-on-success-container font-body text-label-sm';
+          pulse.classList.remove('hidden');
+          dot.className = 'relative inline-flex rounded-full h-2 w-2 bg-success';
+          statusText.textContent = 'Connected';
+          iconBox.className = 'w-11 h-11 shrink-0 rounded bg-success-container text-on-success-container flex items-center justify-center';
+          icon.textContent = 'link';
+          disconnectLabel.textContent = 'Disconnect';
+          showToast('Reconnected to Sage Intacct (US-CORP-01).', 'success');
+        } else {
+          badge.className = 'inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-error-container text-light-on-error-container font-body text-label-sm';
+          pulse.classList.add('hidden');
+          dot.className = 'relative inline-flex rounded-full h-2 w-2 bg-light-error';
+          statusText.textContent = 'Disconnected';
+          iconBox.className = 'w-11 h-11 shrink-0 rounded bg-light-error-container text-light-on-error-container flex items-center justify-center';
+          icon.textContent = 'link_off';
+          disconnectLabel.textContent = 'Reconnect';
+          showToast('Disconnected from Sage Intacct. Automated sync paused.', 'warning');
+        }
+      });
+
+      // --- Mapping Table & Edit Drawer ---
+      const mappingBody = document.getElementById('mapping-table-body');
+      const mappingSearch = document.getElementById('mapping-search');
+      const mappingFilter = document.getElementById('mapping-status-filter');
+      const mappingEmptyState = document.getElementById('mapping-empty-state');
+      const btnResetFilter = document.getElementById('btn-reset-mapping-filter');
+      const navUnmappedBadge = document.getElementById('nav-unmapped-badge');
+
+      const drawer = document.getElementById('mapping-drawer');
+      const drawerBackdrop = document.getElementById('drawer-backdrop');
+      const drawerTitle = document.getElementById('drawer-title');
+      const drawerBukiCategory = document.getElementById('drawer-buki-category');
+      const drawerSageAccount = document.getElementById('drawer-sage-account');
+      const drawerTaxCode = document.getElementById('drawer-tax-code');
+      const closeDrawerBtn = document.getElementById('close-drawer-btn');
+      const cancelDrawerBtn = document.getElementById('cancel-drawer-btn');
+      const saveDrawerBtn = document.getElementById('save-drawer-btn');
+
+      function renderMappings() {
+        const query = mappingSearch.value.trim().toLowerCase();
+        const statusVal = mappingFilter.value;
+
+        const unmappedCount = state.mappings.filter((m) => m.status === 'unmapped').length;
+        navUnmappedBadge.textContent = String(unmappedCount);
+        navUnmappedBadge.classList.toggle('hidden', unmappedCount === 0);
+
+        const filtered = state.mappings.filter((m) => {
+          const matchesStatus = statusVal === 'all' || m.status === statusVal;
+          const matchesQuery =
+            !query ||
+            m.bukiCategory.toLowerCase().includes(query) ||
+            m.sageCode.toLowerCase().includes(query) ||
+            m.sageName.toLowerCase().includes(query);
+          return matchesStatus && matchesQuery;
+        });
+
+        mappingBody.innerHTML = '';
+        if (filtered.length === 0) {
+          mappingEmptyState.classList.remove('hidden');
+          mappingEmptyState.classList.add('flex');
+          return;
+        }
+        mappingEmptyState.classList.add('hidden');
+        mappingEmptyState.classList.remove('flex');
+
+        filtered.forEach((m) => {
+          const tr = document.createElement('tr');
+          tr.className = 'group hover:bg-light-surface-container-low cursor-pointer transition-colors duration-state-change';
+          tr.setAttribute('tabindex', '0');
+
+          const isMapped = m.status === 'mapped';
+          const badgeHtml = isMapped
+            ? '<span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-success-container text-on-success-container font-body text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-success"></span>Mapped</span>'
+            : '<span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-warning-container text-on-warning-container font-body text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-warning"></span>Unmapped</span>';
+
+          tr.innerHTML = `
+            <td class="px-gutter-lg py-gutter-md font-body text-body-md text-light-on-surface font-medium">${m.bukiCategory}</td>
+            <td class="px-gutter-lg py-gutter-md font-mono text-mono-md ${m.sageCode ? 'text-light-on-surface' : 'text-light-outline'} tabular-nums">${m.sageCode || '—'}</td>
+            <td class="px-gutter-lg py-gutter-md font-body text-body-md ${m.sageCode ? 'text-light-on-surface-variant' : 'text-light-outline italic'}">${m.sageName}</td>
+            <td class="px-gutter-lg py-gutter-md font-mono text-mono-sm ${m.taxMapping ? 'text-light-on-surface-variant' : 'text-light-outline'} tabular-nums">${m.taxMapping || 'Unassigned'}</td>
+            <td class="px-gutter-lg py-gutter-md">${badgeHtml}</td>
+            <td class="px-gutter-lg py-gutter-md text-right">
+              <button type="button" class="md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100 inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-sm text-light-on-surface-variant hover:text-light-primary hover:bg-light-primary-container font-body text-label-lg transition-all duration-state-change">
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">edit</span>
+                <span>${isMapped ? 'Edit' : 'Map'}</span>
+              </button>
+            </td>
+          `;
+          tr.addEventListener('click', () => openDrawer(m.id));
+          mappingBody.appendChild(tr);
+        });
+      }
+
+      function openDrawer(id) {
+        const item = state.mappings.find((m) => m.id === id);
+        if (!item) return;
+        state.editingMappingId = id;
+        drawerTitle.textContent = item.bukiCategory;
+        drawerBukiCategory.value = item.bukiCategory;
+        drawerSageAccount.value = item.sageCode ? `${item.sageCode}|${item.sageName}` : '';
+        drawerTaxCode.value = item.taxMapping || '';
+        drawer.classList.remove('hidden');
+        drawerBackdrop.classList.remove('hidden');
+      }
+
+      function closeDrawer() {
+        drawer.classList.add('hidden');
+        drawerBackdrop.classList.add('hidden');
+        state.editingMappingId = null;
+      }
+
+      closeDrawerBtn.addEventListener('click', closeDrawer);
+      cancelDrawerBtn.addEventListener('click', closeDrawer);
+      drawerBackdrop.addEventListener('click', closeDrawer);
+
+      saveDrawerBtn.addEventListener('click', () => {
+        const item = state.mappings.find((m) => m.id === state.editingMappingId);
+        if (!item) return;
+        const val = drawerSageAccount.value;
+        if (val) {
+          const [code, name] = val.split('|');
+          item.sageCode = code;
+          item.sageName = name;
+          item.taxMapping = drawerTaxCode.value || 'TAX-EXEMPT (0%)';
+          item.status = 'mapped';
+          showToast(`Mapped "${item.bukiCategory}" to ${code}.`, 'success');
+        } else {
+          item.sageCode = '';
+          item.sageName = 'Not assigned';
+          item.taxMapping = '';
+          item.status = 'unmapped';
+          showToast(`Cleared mapping for "${item.bukiCategory}".`, 'warning');
+        }
+        closeDrawer();
+        renderMappings();
+      });
+
+      mappingSearch.addEventListener('input', renderMappings);
+      mappingFilter.addEventListener('change', renderMappings);
+      btnResetFilter.addEventListener('click', () => {
+        mappingSearch.value = '';
+        mappingFilter.value = 'all';
+        renderMappings();
+      });
+
+      // --- Sync Logs & Expandable Error Rows ---
+      const logsBody = document.getElementById('logs-table-body');
+      const logsFilter = document.getElementById('logs-status-filter');
+      const navFailedBadge = document.getElementById('nav-failed-badge');
+      const metricFailed = document.getElementById('metric-failed');
+
+      function renderLogs() {
+        const filterVal = logsFilter.value;
+        const failedCount = state.logs.filter((l) => l.status === 'failed').length;
+        navFailedBadge.textContent = String(failedCount);
+        navFailedBadge.classList.toggle('hidden', failedCount === 0);
+        metricFailed.textContent = String(failedCount);
+
+        const filtered = state.logs.filter((l) => filterVal === 'all' || l.status === filterVal);
+        logsBody.innerHTML = '';
+
+        filtered.forEach((log) => {
+          const isExpanded = state.expandedLogIds.has(log.id);
+          const hasError = log.status === 'failed' || log.status === 'warning';
+
+          let badgeHtml = '';
+          if (log.status === 'success') {
+            badgeHtml = '<span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-success-container text-on-success-container font-body text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-success"></span>Success</span>';
+          } else if (log.status === 'warning') {
+            badgeHtml = '<span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-warning-container text-on-warning-container font-body text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-warning"></span>Warning</span>';
+          } else {
+            badgeHtml = '<span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-error-container text-light-on-error-container font-body text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-light-error"></span>Failed</span>';
+          }
+
+          const tr = document.createElement('tr');
+          tr.className = 'group hover:bg-light-surface-container-low transition-colors duration-state-change ' + (hasError ? 'cursor-pointer' : '');
+          tr.innerHTML = `
+            <td class="px-gutter-lg py-gutter-md font-mono text-mono-sm text-light-outline tabular-nums">${log.timestamp}</td>
+            <td class="px-gutter-lg py-gutter-md">
+              <div class="flex flex-wrap items-center gap-gutter-sm">
+                <span class="font-mono text-mono-md text-light-on-surface tabular-nums">${log.batchId}</span>
+                <span class="text-light-outline-variant" aria-hidden="true">·</span>
+                <span class="font-body text-body-md text-light-on-surface-variant">${log.vendor}</span>
+              </div>
+            </td>
+            <td class="px-gutter-lg py-gutter-md font-mono text-mono-sm text-light-on-surface-variant">${log.direction}</td>
+            <td class="px-gutter-lg py-gutter-md">${badgeHtml}</td>
+            <td class="px-gutter-lg py-gutter-md text-right">
+              ${hasError
+                ? `<button type="button" class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-sm text-light-on-surface-variant hover:text-light-on-surface hover:bg-light-surface-container font-body text-label-lg transition-colors duration-state-change">
+                     <span>${isExpanded ? 'Hide' : 'Inspect'}</span>
+                     <span class="material-symbols-outlined text-[18px] transition-transform duration-state-change ${isExpanded ? 'rotate-180' : ''}">expand_more</span>
+                   </button>`
+                : '<span class="font-mono text-mono-sm text-light-outline">—</span>'
+              }
+            </td>
+          `;
+
+          if (hasError) {
+            tr.addEventListener('click', () => {
+              if (state.expandedLogIds.has(log.id)) {
+                state.expandedLogIds.delete(log.id);
+              } else {
+                state.expandedLogIds.add(log.id);
+              }
+              renderLogs();
+            });
+          }
+
+          logsBody.appendChild(tr);
+
+          if (hasError && isExpanded) {
+            const detailTr = document.createElement('tr');
+            detailTr.className = 'bg-light-surface-container-low';
+            const isFailed = log.status === 'failed';
+            const codeBadgeCls = isFailed
+              ? 'bg-light-error-container text-light-on-error-container'
+              : 'bg-warning-container text-on-warning-container';
+
+            detailTr.innerHTML = `
+              <td colspan="5" class="px-gutter-lg py-gutter-md">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-gutter-lg p-gutter-lg rounded bg-light-surface-container-lowest border border-light-outline-variant">
+                  <div class="flex flex-col gap-gutter-sm min-w-0 flex-1">
+                    <div class="flex flex-wrap items-center gap-gutter-sm">
+                      <span class="inline-flex items-center px-gutter-sm py-0.5 rounded-xs font-mono text-mono-sm tabular-nums ${codeBadgeCls}">${log.httpCode}</span>
+                      <span class="font-body text-title-md text-light-on-surface">${log.errorTitle}</span>
+                    </div>
+                    <div class="px-gutter-md py-gutter-sm rounded-xs bg-light-surface-container-low border border-light-outline-variant font-mono text-mono-sm text-light-on-surface-variant">
+                      ${log.errorDetail}
+                    </div>
+                  </div>
+                  ${isFailed
+                    ? `<button type="button" data-retry-id="${log.id}" class="retry-btn shrink-0 inline-flex items-center justify-center gap-gutter-xs px-gutter-lg py-gutter-sm rounded-sm bg-light-primary text-light-on-primary font-body text-label-lg hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light-primary transition-colors duration-state-change">
+                         <span class="material-symbols-outlined text-[18px]" aria-hidden="true">refresh</span>
+                         <span>Retry Sync</span>
+                       </button>`
+                    : ''
+                  }
+                </div>
+              </td>
+            `;
+            logsBody.appendChild(detailTr);
+          }
+        });
+
+        document.querySelectorAll('.retry-btn').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const id = btn.dataset.retryId;
+            const log = state.logs.find((l) => l.id === id);
+            if (!log) return;
+            log.status = 'success';
+            log.httpCode = '';
+            log.errorTitle = '';
+            log.errorDetail = '';
+            state.expandedLogIds.delete(id);
+            renderLogs();
+            showToast(`Retried "${log.batchId}" — posted to Sage Intacct.`, 'success');
+          });
+        });
+      }
+
+      logsFilter.addEventListener('change', renderLogs);
+
+      // --- Settings Toggles & Form ---
+      document.querySelectorAll('.sync-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const checked = btn.getAttribute('aria-checked') === 'true';
+          const next = !checked;
+          btn.setAttribute('aria-checked', String(next));
+          btn.classList.toggle('bg-light-primary', next);
+          btn.classList.toggle('bg-light-surface-container-highest', !next);
+          const thumb = btn.querySelector('.toggle-thumb');
+          thumb.classList.toggle('translate-x-5', next);
+          thumb.classList.toggle('translate-x-0', !next);
+        });
+      });
+
+      const apiSecretInput = document.getElementById('api-secret-input');
+      const toggleSecretBtn = document.getElementById('toggle-secret-btn');
+      const secretEyeIcon = document.getElementById('secret-eye-icon');
+      toggleSecretBtn.addEventListener('click', () => {
+        const isPassword = apiSecretInput.type === 'password';
+        apiSecretInput.type = isPassword ? 'text' : 'password';
+        secretEyeIcon.textContent = isPassword ? 'visibility_off' : 'visibility';
+      });
+
+      document.getElementById('settings-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        showToast('Sage API credentials and webhook configuration saved.', 'success');
+      });
+
+      // Initial render
+      renderMappings();
+      renderLogs();
+    })();
+  </script>
+
+
+</body></html>
